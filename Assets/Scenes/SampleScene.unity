@@ -339,8 +339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db217cfa38c9fc4287416993c5358e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card1: {fileID: 1118772065}
-  card2: {fileID: 1263430827}
+  playerCard1: {fileID: 0}
+  playerCard2: {fileID: 0}
   listOfSprites:
   - {fileID: 5907047, guid: 1b40b09464815d7428a8f7f435bfd125, type: 3}
   - {fileID: -1410975751, guid: 1b40b09464815d7428a8f7f435bfd125, type: 3}
@@ -470,7 +470,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -478,7 +478,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1118772067

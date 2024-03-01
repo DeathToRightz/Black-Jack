@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static Card;
-//54 cards
+//52 cards
 public class DeckofCards : MonoBehaviour
 {
     [SerializeField] GameObject playerCard1, playerCard2;

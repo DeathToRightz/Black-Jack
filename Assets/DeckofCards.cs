@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 //52 cards
@@ -16,79 +14,38 @@ public class DeckofCards : MonoBehaviour
         cards = new List<Card>();
         playerCards = new GameObject[5];
         CreateDeck();
-
+        Debug.Log("Before shuffle");
         cardsVisual[0].sprite = cards[0].Sprite;
         Debug.Log(cards[0].CurrentSuit + " " + cards[0].CardValue);
-        cardsVisual[1].sprite = cards[51].Sprite;
-        Debug.Log(cards[51].CurrentSuit + " " + cards[51].CardValue );
-       
-    }
-
-   
-   
-
+        /*cardsVisual[1].sprite = cards[51].Sprite;
+        Debug.Log(cards[51].CurrentSuit + " " + cards[51].CardValue );  */
+        Debug.Log("After shuffle");
+        ShuffledDeck(cards);
+        Debug.Log(cards[0].CurrentSuit + " " + cards[0].CardValue);
+    } 
     void CreateDeck()
     {
         int spritePlacement = 0;
-
-
         foreach (Card.Suit suit in Enum.GetValues(typeof(Card.Suit)))
-        {
-            
-            
+        {                  
            for(int i = 14; i > 1; i--)
-            {
-                
+            {              
                 cards.Add(new Card(suit, i, listOfSprites[spritePlacement]));
                 spritePlacement++;
-
             }
-            
-
-        }
-        
+        }   
     }
 
-    Sprite SetSpriteOnCard(int suitValue)
+    List<Card> ShuffledDeck(List<Card> deck)
     {
-        switch(suitValue)
+        for (int i = deck.Count - 1; i > 0; i--)
         {
-            case 0:
-                for (int i = 0; i <= 13; i++)
-                {
-                    return listOfSprites[i];
-                }
-                break;
-            case 1:
-                for (int i = 13; i <= 26; i++)
-                {
-                    return listOfSprites[i];
-                }
-                break;
-            case 2:
-                for (int i = 26; i <= 39; i++)
-                {
-                    return listOfSprites[i];
-                }
-                break;
-            case 3:
-                for (int i = 39; i <= 52; i++)
-                {
-                    return listOfSprites[i];
-                }
-                break;
+            int j = UnityEngine.Random.Range(0, i + 1);
+            Card temp = deck[i];
+            deck[i] = deck[j];
+            deck[j] = temp;
         }
-        return null;
+        return deck;
     }
-
-    void GetSpriteRenderer(GameObject[] cards)
-    {
-        
-        for (int i = 0; i < cards.Length; i++)
-        {
-            //cardsVisual[i] = cards[i].GetComponent<SpriteRenderer>();
-            
-        }
-        
-    }
+    
 }

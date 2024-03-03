@@ -3,24 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static Card;
+
 //52 cards
 public class DeckofCards : MonoBehaviour
 {
-    [SerializeField] GameObject playerCard1, playerCard2;
     private List <Card> cards;
     [SerializeField] Sprite[] listOfSprites;
-    private SpriteRenderer cardVisual1, cardVisual2;
+    public GameObject[] playerCards;
+    public SpriteRenderer[] cardsVisual;
     void Start()
     {
-        cards = new List<Card> ();  
-       cardVisual1 = playerCard1.GetComponent<SpriteRenderer> ();
-       // cardVisual1.sprite = listOfSprites[0];
-         CreateDeck();
-        
-         Instantiate(playerCard1, playerCard1.transform.position, Quaternion.identity);
-       cardVisual1.sprite = cards[0].Sprite;
-        Debug.Log(cards[0].CardValue);
+        cards = new List<Card>();
+        playerCards = new GameObject[5];
+        CreateDeck();
+
+        cardsVisual[0].sprite = cards[0].Sprite;
+        Debug.Log(cards[0].CurrentSuit + " " + cards[0].CardValue);
+        cardsVisual[1].sprite = cards[51].Sprite;
+        Debug.Log(cards[51].CurrentSuit + " " + cards[51].CardValue );
+       
     }
 
    
@@ -28,27 +29,66 @@ public class DeckofCards : MonoBehaviour
 
     void CreateDeck()
     {
-        
-       
+        int spritePlacement = 0;
 
-        foreach(Card.Suit suit in Enum.GetValues(typeof(Card.Suit)))
+
+        foreach (Card.Suit suit in Enum.GetValues(typeof(Card.Suit)))
         {
+            
             
            for(int i = 14; i > 1; i--)
             {
-
-                cards.Add(new Card(suit, i, SetSpriteOnCard()));
+                
+                cards.Add(new Card(suit, i, listOfSprites[spritePlacement]));
+                spritePlacement++;
 
             }
-           
+            
+
         }
         
     }
 
-    Sprite SetSpriteOnCard()
+    Sprite SetSpriteOnCard(int suitValue)
     {
-        return listOfSprites[0];
+        switch(suitValue)
+        {
+            case 0:
+                for (int i = 0; i <= 13; i++)
+                {
+                    return listOfSprites[i];
+                }
+                break;
+            case 1:
+                for (int i = 13; i <= 26; i++)
+                {
+                    return listOfSprites[i];
+                }
+                break;
+            case 2:
+                for (int i = 26; i <= 39; i++)
+                {
+                    return listOfSprites[i];
+                }
+                break;
+            case 3:
+                for (int i = 39; i <= 52; i++)
+                {
+                    return listOfSprites[i];
+                }
+                break;
+        }
+        return null;
     }
 
-    
+    void GetSpriteRenderer(GameObject[] cards)
+    {
+        
+        for (int i = 0; i < cards.Length; i++)
+        {
+            //cardsVisual[i] = cards[i].GetComponent<SpriteRenderer>();
+            
+        }
+        
+    }
 }

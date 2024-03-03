@@ -339,8 +339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db217cfa38c9fc4287416993c5358e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCard1: {fileID: 1118772065}
-  playerCard2: {fileID: 1263430827}
   listOfSprites:
   - {fileID: 5907047, guid: 1b40b09464815d7428a8f7f435bfd125, type: 3}
   - {fileID: -1410975751, guid: 1b40b09464815d7428a8f7f435bfd125, type: 3}
@@ -394,6 +392,18 @@ MonoBehaviour:
   - {fileID: 1558415717, guid: 1b40b09464815d7428a8f7f435bfd125, type: 3}
   - {fileID: -611056721, guid: 1b40b09464815d7428a8f7f435bfd125, type: 3}
   - {fileID: 1703396236, guid: 1b40b09464815d7428a8f7f435bfd125, type: 3}
+  playerCards:
+  - {fileID: 1118772065}
+  - {fileID: 1263430827}
+  - {fileID: 522738306}
+  - {fileID: 934777635}
+  - {fileID: 480578178}
+  cardsVisual:
+  - {fileID: 1118772066}
+  - {fileID: 1263430828}
+  - {fileID: 522738308}
+  - {fileID: 934777637}
+  - {fileID: 480578180}
 --- !u!4 &370895456
 Transform:
   m_ObjectHideFlags: 0
@@ -719,7 +729,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5907047, guid: 1b40b09464815d7428a8f7f435bfd125, type: 3}
+  m_Sprite: {fileID: -1851748589, guid: 1b40b09464815d7428a8f7f435bfd125, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

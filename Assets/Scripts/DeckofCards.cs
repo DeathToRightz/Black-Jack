@@ -8,23 +8,35 @@ public class DeckofCards : MonoBehaviour
 {
     private List <Card> cards;
     [SerializeField] Sprite[] listOfSprites;
-    [SerializeField] SpriteRenderer[] cardsVisual;
+    [SerializeField] SpriteRenderer[] cardsVisual, opponentsCardsVisual;
     [SerializeField] TMP_Text playerScoreTxt;
     [SerializeField] TMP_Text winResultsTxt,lossResultsTxt;
+    User player;
+    AI ai;
+    bool playerTurnEnd;
     private int playerScore; 
-    private int cardplace = 9;
-    private int hand = 0;
+    
     private GameObject lossScreen, winScreen;
     void Start()
     {
+       
         cards = new List<Card>(); //Makes the cards list 
+        CreateDeck();
         lossScreen = GameObject.Find("Loss Panel");
         winScreen = GameObject.Find("Win Panel");
         lossScreen.gameObject.SetActive(false);
         winScreen.gameObject.SetActive(false);
-        CreateDeck(); //Creates the deck of cards  
-      
+         //Creates the deck of cards  
+
+        
+        player = new User(this, new List<Card>());
+        
+        player.OnTurnStart();
+        ai = new AI(this, new List<Card>());
+        ai.myHand.DrawCard(ref cards);
+        ai.myHand.DrawCard(ref cards);
     }
+
     private void Update()
     {
         ResultsOfGame();
@@ -63,18 +75,7 @@ public class DeckofCards : MonoBehaviour
         return deck;
     }
     
-    public void DrawCard()
-    {
-        if( hand <=4)
-        {
-            cardsVisual[hand].sprite = cards[cardplace].Sprite;
-            
-            playerScore += cards[cardplace].CardValue;
-            cardplace++;
-            hand++;
-        }
-        playerScoreTxt.text = $"Player's score: {playerScore}";
-    }
+   
 
    private void ResultsOfGame()
     {
@@ -88,5 +89,30 @@ public class DeckofCards : MonoBehaviour
             winScreen.gameObject.SetActive(true);
             winResultsTxt.text = $"You win, your hand's value was {playerScore}";
         }
+    }
+    public void OnTurnFinished()
+    {
+
+        if(player.isMyTurn)
+        {
+            player.isMyTurn = false;
+            ai.OnTurnStart();
+        }
+    }
+
+    public void OnClickDrawCard()
+    {
+       
+        player.myHand.DrawCard(ref cards);
+        for(int i = 0; i < player.myHand.cardsInHand.Count; i++)
+        {
+            cardsVisual[i].sprite = player.myHand.cardsInHand[i].Sprite;
+        }
+
+
+    }
+    public void OnClickEndTurn()
+    {
+        player.TurnEnd();
     }
 }

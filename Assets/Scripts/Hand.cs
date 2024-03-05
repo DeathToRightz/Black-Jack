@@ -3,22 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-public class Hand : MonoBehaviour
+using UnityEngine.XR;
+public class Hand 
 {
-    [SerializeField] TMP_Text playersScoreTxt;
-    [SerializeField] TMP_Text opponentsScoreTxt;
-    private int playerScore, opponentScore;
-    void Start()
+   public  List<Card> cardsInHand = new List<Card>();
+    public int handValue;
+
+    public Hand(List<Card> putCardsHere)
+    {
+        cardsInHand = putCardsHere;
+        handValue = CalaculateHandValue();
+
+    }
+
+    public void DrawCard(ref List<Card>deckOfCards)
     {
         
+        cardsInHand.Add(deckOfCards[0]);
+        deckOfCards.RemoveAt(0);
+        handValue =   CalaculateHandValue();
     }
-
-    // Update is called once per frame
-    void Update()
+    public int CalaculateHandValue()
     {
-        if(playerScore > 21)
+        int handValue = 0;
+        if(cardsInHand.Count <= 0)
         {
-
+            return 0;
         }
+        foreach (Card card in cardsInHand)
+        {
+            handValue += card.CardValue;
+        }
+        return handValue;
     }
+
+    
 }

@@ -7,7 +7,7 @@ public class Card
     public enum Suit
     {
         Clubs = 0,
-        Spaces = 1,
+        Spades = 1,
         Diamonds = 2,
         Hearts = 3,
     }

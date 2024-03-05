@@ -7,29 +7,46 @@ public class DeckofCards : MonoBehaviour
 {
     private List <Card> cards;
     [SerializeField] Sprite[] listOfSprites;
-    public GameObject[] playerCards;
-    public SpriteRenderer[] cardsVisual;
+    [SerializeField] GameObject[] playerCards;
+    [SerializeField] SpriteRenderer[] cardsVisual;
     void Start()
     {
-        cards = new List<Card>();
-        playerCards = new GameObject[5];
-        CreateDeck();
-        Debug.Log("Before shuffle");
-        cardsVisual[0].sprite = cards[0].Sprite;
-        Debug.Log(cards[0].CurrentSuit + " " + cards[0].CardValue);
-        /*cardsVisual[1].sprite = cards[51].Sprite;
-        Debug.Log(cards[51].CurrentSuit + " " + cards[51].CardValue );  */
-        Debug.Log("After shuffle");
-        ShuffledDeck(cards);
-        Debug.Log(cards[0].CurrentSuit + " " + cards[0].CardValue);
+        cards = new List<Card>(); //Makes the cards list 
+        playerCards = new GameObject[5]; //Makes the reference with the five player cards
+        CreateDeck(); //Creates the deck of cards
+        int x = 3;
+        for (int i = 0; i < 5; i++)
+        {
+            
+            cardsVisual[i].sprite = cards[x].Sprite;
+            Debug.Log(cards[x].CurrentSuit + " " + cards[x].CardValue);
+            x++;
+        }
+        //cardsVisual[0].sprite = cards[6].Sprite;
+        
+        
+        
+        
+        //Debug.Log("After shuffle");
+        //ShuffledDeck(cards); //Shuffles the deck of cards
+        
     } 
     void CreateDeck()
     {
         int spritePlacement = 0;
+        
+        
         foreach (Card.Suit suit in Enum.GetValues(typeof(Card.Suit)))
-        {                  
-           for(int i = 14; i > 1; i--)
-            {              
+        {
+            cards.Add(new Card(suit, 11, listOfSprites[spritePlacement]));
+            spritePlacement++;
+            for (int j = 0; j <= 3; j++)
+            {
+                cards.Add(new Card(suit, 10, listOfSprites[spritePlacement]));
+                spritePlacement++;
+            }
+            for (int i = 9; i > 2; i--)
+            {
                 cards.Add(new Card(suit, i, listOfSprites[spritePlacement]));
                 spritePlacement++;
             }

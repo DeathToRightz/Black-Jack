@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class AI : GamePlayer
 {
-    
-    public AI(DeckofCards putGameManagerHere, List<Card> cardsToStartWith) : base(putGameManagerHere, cardsToStartWith) { }
+    private DeckofCards deckOfCards;
+
+    public AI(DeckofCards putGameManagerHere, List<Card> cardsToStartWith, List<Card> putDeckHere) : base(putGameManagerHere, cardsToStartWith, ref putDeckHere) { }
     
         
     
     public override void OnTurnStart()
     {
-        gameManager.OnTurnFinished();
+        //gameManager.OnTurnFinished();
+
+        while(myHand.handValue <= 17 && myHand.cardsInHand.Count < 5)
+        {
+            myHand.DrawCard(ref deck);
+            gameManager.OnClickDrawCardBtn();
+        }
     }
 }

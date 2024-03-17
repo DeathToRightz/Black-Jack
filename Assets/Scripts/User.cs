@@ -6,7 +6,7 @@ public class User : GamePlayer
 {
     public bool isMyTurn {  get;  set; }
 
-    public User(DeckofCards deckofCardsHere, List<Card> cardsToStartWith) : base(deckofCardsHere,cardsToStartWith) { }
+    public User(DeckofCards deckofCardsHere, List<Card> cardsToStartWith, List<Card> putDeckHere) : base(deckofCardsHere,cardsToStartWith, ref putDeckHere) { }
     
     public override void OnTurnStart()
     {
@@ -15,7 +15,8 @@ public class User : GamePlayer
 
     public void TurnEnd()
     {
-        gameManager.OnTurnFinished();
-        
+        gameManager.OnTurnFinished();      
     }
+
+    
 }

@@ -7,16 +7,17 @@ public abstract class GamePlayer
 {
    public Hand myHand;
    protected DeckofCards gameManager;
-   
-    public GamePlayer( DeckofCards putGameManagerHere, List<Card> cardsToStartWith)
+   protected List<Card> deck;
+    public GamePlayer( DeckofCards putGameManagerHere, List<Card> cardsToStartWith, ref List <Card> putDeckHere)
     {
         gameManager = putGameManagerHere;
         myHand =new Hand(cardsToStartWith);
-
+        deck = putDeckHere;
     }
 
 
     public abstract void OnTurnStart();
+    
     
     
 }

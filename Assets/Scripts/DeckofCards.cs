@@ -22,7 +22,7 @@ public class DeckofCards : MonoBehaviour
        
         cards = new List<Card>(); //Makes the cards list 
         CreateDeck();
-        ShuffledDeck(cards);
+       // ShuffledDeck(cards);
         lossScreen = GameObject.Find("Loss Panel");
         winScreen = GameObject.Find("Win Panel");
         lossScreen.gameObject.SetActive(false);

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class GamePlayer
 {
-    public Hand myHand;
+   public Hand myHand;
    protected DeckofCards gameManager;
    
     public GamePlayer( DeckofCards putGameManagerHere, List<Card> cardsToStartWith)

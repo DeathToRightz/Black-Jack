@@ -1,9 +1,6 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
-using UnityEngine.XR;
+
 public class Hand 
 {
    public  List<Card> cardsInHand = new List<Card>();

@@ -23,14 +23,21 @@ public class Hand
     public int CalaculateHandValue()
     {
         int handValue = 0;
+        
         if(cardsInHand.Count <= 0)
         {
             return 0;
         }
         foreach (Card card in cardsInHand)
         {
+            
             handValue += card.CardValue;
+            if(card.CardValue == 11 && handValue >21)
+            {
+                card.CardValue = 1;
+            }
         }
+        
         return handValue;
     }
 

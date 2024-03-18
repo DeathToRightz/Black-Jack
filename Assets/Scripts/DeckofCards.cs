@@ -29,12 +29,9 @@ public class DeckofCards : MonoBehaviour
         lossScreen.gameObject.SetActive(false);
         tieScreen.gameObject.SetActive(false);
         winScreen.gameObject.SetActive(false);              
-        player = new User(this, new List<Card>(),  cards);       
-        player.OnTurnStart();
+        player = new User(this, new List<Card>(),  cards);             
         ai = new AI(this, new List<Card>(), cards);
-        
-        
-        
+        player.OnTurnStart();
         DealStarterCards();
     }
 
@@ -101,69 +98,70 @@ public class DeckofCards : MonoBehaviour
             tieResultsTxt.text = $"Both you and the house tied with a score of {playerScore} and {aiScore}";
         }
     }
-        public void OnTurnFinished()
+    public void OnTurnFinished()
+    {
+
+        if (player.isMyTurn)
         {
+            player.isMyTurn = false;
 
-            if (player.isMyTurn)
-            {
-                player.isMyTurn = false;
-
-                ai.OnTurnStart();
-            }
-            ResultsOfGame();
+            ai.OnTurnStart();
         }
-
-        public void OnClickDrawCardBtn()
-        {
-            if (player.isMyTurn && player.myHand.cardsInHand.Count < 5)
-            {
-                player.myHand.DrawCard(ref cards);
-                for (int i = 0; i < player.myHand.cardsInHand.Count; i++)
-                {
-                    cardsVisual[i].sprite = player.myHand.cardsInHand[i].Sprite;
-                }
-                playerScore = player.myHand.CalaculateHandValue();
-                playerScoreTxt.text = $"Your score: {player.myHand.CalaculateHandValue().ToString()}";
-            }
-            if (!player.isMyTurn)
-            {
-                Debug.Log("ai turn");
-
-                for (int i = 0; i < ai.myHand.cardsInHand.Count; i++)
-                {
-                    opponentsCardsVisual[i].sprite = ai.myHand.cardsInHand[i].Sprite;
-                }
-                aiScore = ai.myHand.CalaculateHandValue();
-                aiScoreTxt.text = $"Opponent score: {ai.myHand.CalaculateHandValue().ToString()}";
-            }
-        if (playerScore > 21 )
-        {
-            ResultsOfGame();
-        }
-
+        ResultsOfGame();
     }
-        public void OnClickEndTurn()
-        {
-            OnTurnFinished();
-        }
 
-        private void DealStarterCards()
+    public void OnClickDrawCardBtn()
+    {
+        if (player.isMyTurn && player.myHand.cardsInHand.Count < 5)
         {
-            player.myHand.DrawCard(ref cards);
             player.myHand.DrawCard(ref cards);
             for (int i = 0; i < player.myHand.cardsInHand.Count; i++)
             {
                 cardsVisual[i].sprite = player.myHand.cardsInHand[i].Sprite;
             }
             playerScore = player.myHand.CalaculateHandValue();
-            playerScoreTxt.text = $"Your score: {player.myHand.CalaculateHandValue().ToString()}";
+            playerScoreTxt.text = $"Your score: {player.myHand.CalaculateHandValue()}";
+        }
+        if (!player.isMyTurn)
+        {
+            Debug.Log("ai turn");
 
-            ai.myHand.DrawCard(ref cards);
             for (int i = 0; i < ai.myHand.cardsInHand.Count; i++)
             {
                 opponentsCardsVisual[i].sprite = ai.myHand.cardsInHand[i].Sprite;
             }
             aiScore = ai.myHand.CalaculateHandValue();
-            aiScoreTxt.text = $"Opponent score: {ai.myHand.CalaculateHandValue().ToString()}";
+            aiScoreTxt.text = $"Opponent score: {ai.myHand.CalaculateHandValue()}";
         }
+        
+        if (playerScore > 21)
+        {
+            ResultsOfGame();
+        }
+
     }
+    public void OnClickEndTurn()
+    {
+        OnTurnFinished();
+    }
+
+    private void DealStarterCards()
+    {
+        player.myHand.DrawCard(ref cards);
+        player.myHand.DrawCard(ref cards);
+        for (int i = 0; i < player.myHand.cardsInHand.Count; i++)
+        {
+            cardsVisual[i].sprite = player.myHand.cardsInHand[i].Sprite;
+        }
+        playerScore = player.myHand.CalaculateHandValue();
+        playerScoreTxt.text = $"Your score: {player.myHand.CalaculateHandValue().ToString()}";
+
+        ai.myHand.DrawCard(ref cards);
+        for (int i = 0; i < ai.myHand.cardsInHand.Count; i++)
+        {
+            opponentsCardsVisual[i].sprite = ai.myHand.cardsInHand[i].Sprite;
+        }
+        aiScore = ai.myHand.CalaculateHandValue();
+        aiScoreTxt.text = $"Opponent score: {ai.myHand.CalaculateHandValue().ToString()}";
+    }
+}

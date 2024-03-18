@@ -21,26 +21,28 @@ public class DeckofCards : MonoBehaviour
     {
        
         cards = new List<Card>(); //Makes the cards list 
-        CreateDeck();
-        ShuffledDeck(cards);
-        lossScreen = GameObject.Find("Loss Panel");
+       
+        CreateDeck(); // Creates the list of cards
+       
+        ShuffledDeck(cards); //Shuffles the list of cards
+        
+        lossScreen = GameObject.Find("Loss Panel"); 
         winScreen = GameObject.Find("Win Panel");
-        tieScreen = GameObject.Find("Tie Panel");
+        tieScreen = GameObject.Find("Tie Panel");  //Turns off the game results panels
         lossScreen.gameObject.SetActive(false);
         tieScreen.gameObject.SetActive(false);
-        winScreen.gameObject.SetActive(false);              
-        player = new User(this, new List<Card>(),  cards);             
-        ai = new AI(this, new List<Card>(), cards);
-        player.OnTurnStart();
-        DealStarterCards();
+        winScreen.gameObject.SetActive(false);             
+
+        player = new User(this, new List<Card>(),  cards);  //Creates the player
+                                                                  
+        ai = new AI(this, new List<Card>(), cards); //Creates the ai 
+
+        player.OnTurnStart(); //Starts on the player's turn
+
+        DealStarterCards(); //Calles the funciton to deal the starting cards
     }
 
-    private void Update()
-    {
-       
-        
-       
-    }
+    //Creates the deck using a list of the Cards setting a value and sprite to each card object throught all the suits
     void CreateDeck()
     {
         int spritePlacement = 0;
@@ -66,6 +68,7 @@ public class DeckofCards : MonoBehaviour
         
     }
 
+    //Shuffles the list of Cards 
     List<Card> ShuffledDeck(List<Card> deck)
     {
         for (int i = deck.Count - 1; i > 0; i--)
@@ -78,8 +81,7 @@ public class DeckofCards : MonoBehaviour
         return deck;
     }
 
-
-
+    //Gives the results of the game comparing the scores of the player and ai
     private void ResultsOfGame()
     {
         if (playerScore > 21 || (aiScore == 21 && playerScore > 21) || (aiScore <= 21 & aiScore > playerScore))
@@ -98,6 +100,7 @@ public class DeckofCards : MonoBehaviour
             tieResultsTxt.text = $"Both you and the house tied with a score of {playerScore} and {aiScore}";
         }
     }
+    //Function switch turn to ai and calles the ai to start drawing cards from it's funciton, then it will call the ResultsOfGame function
     public void OnTurnFinished()
     {
 
@@ -109,6 +112,7 @@ public class DeckofCards : MonoBehaviour
         }
         ResultsOfGame();
     }
+    //Function switch the visuals of the back of the cards to the corrisponding card that was drawn, if it's the players turn it will change the player's cards and if it's the ai's turn it will change the ai's cards. 
 
     public void OnClickDrawCardBtn()
     {
@@ -134,17 +138,20 @@ public class DeckofCards : MonoBehaviour
             aiScoreTxt.text = $"Opponent score: {ai.myHand.CalaculateHandValue()}";
         }
         
+        //If during when the player is drawing cards and their score goes over 21 it will call the ResultsOfGame function
         if (playerScore > 21)
         {
             ResultsOfGame();
         }
 
     }
+    //Calles the function when the button is pressed, I know that i couldve made the function be called by the button but I thought this would be easier to understand with a different name attached to it.
     public void OnClickEndTurn()
     {
         OnTurnFinished();
     }
 
+    //This deals the starting cards at the beggining of each game, similar to the draw card function, but deals two cards to the player and 1 to the ai.
     private void DealStarterCards()
     {
         player.myHand.DrawCard(ref cards);

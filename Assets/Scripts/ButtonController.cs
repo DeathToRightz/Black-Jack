@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ButtonController : MonoBehaviour
 {
+    //Switches scenes depending on which button is pressed
   public void StartButtonClick()
     {
         SceneManager.LoadScene(2);

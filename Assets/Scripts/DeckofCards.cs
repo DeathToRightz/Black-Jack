@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-//52 cards
+//////////////////////////////////////////////
+//Assignment/Lab/Project: Blackjack
+//Name: Logan Cordova
+//Section: SGD.213.2172
+//Instructor: Professor Sowers
+//Date: 03/18/2024
+/////////////////////////////////////////////
 public class DeckofCards : MonoBehaviour
 {
-    private List <Card> cards;
-    [SerializeField] Sprite[] listOfSprites;
-    [SerializeField] SpriteRenderer[] cardsVisual, opponentsCardsVisual;
-    [SerializeField] TMP_Text playerScoreTxt,aiScoreTxt;
-    [SerializeField] TMP_Text winResultsTxt,lossResultsTxt,tieResultsTxt;
-    User player;
-    AI ai;
+    private List <Card> cards; //Creates the list of Cards
+    [SerializeField] Sprite[] listOfSprites; //Creates the list of sprites
+    [SerializeField] SpriteRenderer[] cardsVisual, opponentsCardsVisual; //References for both the player and ai's 5 cards
+    [SerializeField] TMP_Text playerScoreTxt,aiScoreTxt; //Text that represents the score
+    [SerializeField] TMP_Text winResultsTxt,lossResultsTxt,tieResultsTxt; //The text shown after each game
+    User player; //The player using the gameplayer as its base
+    AI ai; //The ai using the gameplayer as its base
    
     private int playerScore, aiScore; 
     

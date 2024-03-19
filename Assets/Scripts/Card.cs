@@ -1,6 +1,13 @@
 
 using UnityEngine;
 [System.Serializable]
+//////////////////////////////////////////////
+//Assignment/Lab/Project: Blackjack
+//Name: Logan Cordova
+//Section: SGD.213.2172
+//Instructor: Professor Sowers
+//Date: 03/18/2024
+/////////////////////////////////////////////
 public class Card
 {
     //Value for the card

@@ -2,7 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+//////////////////////////////////////////////
+//Assignment/Lab/Project: Blackjack
+//Name: Logan Cordova
+//Section: SGD.213.2172
+//Instructor: Professor Sowers
+//Date: 03/18/2024
+/////////////////////////////////////////////
 public abstract class GamePlayer
 {
     //Reference to the hand script, DeckOfCards script and the list of cards being used

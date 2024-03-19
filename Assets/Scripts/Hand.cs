@@ -1,6 +1,12 @@
 
 using System.Collections.Generic;
-
+//////////////////////////////////////////////
+//Assignment/Lab/Project: Blackjack
+//Name: Logan Cordova
+//Section: SGD.213.2172
+//Instructor: Professor Sowers
+//Date: 03/18/2024
+/////////////////////////////////////////////
 public class Hand 
 {
     //Uses the list of Cards and has reference for the cards value in the hand
